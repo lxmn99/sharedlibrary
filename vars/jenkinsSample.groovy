@@ -14,7 +14,9 @@ def call(String repoUrl) {
            }
            stage("Cleaning workspace") {
                steps {
-                   sh "mvn clean"
+                 script{
+                      sh "mvn clean"
+                  }
                }
            }
            stage("Running Testcase") {
