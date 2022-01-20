@@ -1,10 +1,6 @@
 def call(String repoUrl) {
   pipeline {
        agent any
-       tools {
-           maven 'MAVEN_HOME'
-           jdk 'JAVA_HOME'
-       }
        stages {
          
            stage("Checkout Code") {
@@ -16,7 +12,7 @@ def call(String repoUrl) {
            stage("Cleaning workspace") {
                steps {
                  script{
-                      withMaven(maven: 'MAVEN_HOME'){
+                      withMaven(maven: 'Maven3'){
                       bat 'mvn clean compile'
                         }
                   }
