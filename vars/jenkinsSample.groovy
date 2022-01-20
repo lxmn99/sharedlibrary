@@ -13,6 +13,7 @@ def call(String repoUrl) {
                    bat 'java -version'
                }
          }
+         }
            stage("Checkout Code") {
                steps {
                    git branch: 'master',
