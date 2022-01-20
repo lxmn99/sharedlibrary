@@ -11,6 +11,7 @@ def call(String repoUrl) {
                    sh "mvn --version"
                    sh "java -version"
                }
+         }
            stage("Checkout Code") {
                steps {
                    git branch: 'master',
