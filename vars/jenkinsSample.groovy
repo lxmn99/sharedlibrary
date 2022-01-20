@@ -1,33 +1,27 @@
 def call(String repoUrl) {
-  pipeline {
-       agent any
-       stages {
-         
-           stage("Checkout Code") {
-               steps {
-                   git branch: 'master',
-                       url: "${repoUrl}"
-               }
-           }
-           stage("Cleaning workspace") {
-               steps {
-                 script{
-                      withMaven(maven: 'Maven3'){
-                      bat 'mvn clean compile'
-                        }
-                  }
-               }
-           }
-           stage("Running Testcase") {
-              steps {
-                   sh "mvn test"
-               }
-           }
-           stage("Packing Application") {
-               steps {
-                   sh "mvn package -DskipTests"
-               }
-           }
-       }
-   }
+ pipeline{
+agent any
+stages{
+stage('Compile Stage'){
+steps{
+withMaven(maven: 'Maven3'){
+bat 'mvn clean compile'
+}
+}
+}
+stage('Test Stage'){
+steps{
+withMaven(maven: 'Maven3'){
+bat 'mvn test'
+}
+}
+}
+stage('Build Stage'){
+steps{
+withMaven(maven: 'Maven3'){
+bat 'mvn install'
+}
+}
+}
+}
 }
