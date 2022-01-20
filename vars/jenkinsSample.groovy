@@ -8,8 +8,9 @@ def call(String repoUrl) {
        stages {
          stage("Tools initialization") {
                steps {
-                   sh "mvn --version"
-                   sh "java -version"
+                 withMaven(maven: 'Maven3'){
+                   bat 'mvn --version'
+                   bat 'java -version'
                }
          }
            stage("Checkout Code") {
@@ -21,7 +22,9 @@ def call(String repoUrl) {
            stage("Cleaning workspace") {
                steps {
                  script{
-                      sh "mvn clean"
+                      withMaven(maven: 'Maven3'){
+                      bat 'mvn clean compile'
+                        }
                   }
                }
            }
