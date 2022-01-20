@@ -6,14 +6,7 @@ def call(String repoUrl) {
            jdk 'JAVA_HOME'
        }
        stages {
-         stage("Tools initialization") {
-               steps {
-                 withMaven(maven: 'MAVEN_HOME'){
-                   bat 'mvn --version'
-                   bat 'java -version'
-               }
-         }
-         }
+         
            stage("Checkout Code") {
                steps {
                    git branch: 'master',
