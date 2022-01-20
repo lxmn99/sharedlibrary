@@ -15,14 +15,14 @@ bat 'mvn clean compile'
 }
 }
 }
-stage('Test Stage'){
+stage('Testing Stage'){
 steps{
 withMaven(maven: 'Maven3'){
 bat 'mvn test'
 }
 }
 }
-stage('Build Stage'){
+stage('Build artifact Stage'){
 steps{
 withMaven(maven: 'Maven3'){
 bat 'mvn install'
