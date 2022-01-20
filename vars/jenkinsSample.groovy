@@ -2,6 +2,12 @@ def call(String repoUrl) {
  pipeline{
 agent any
 stages{
+ stage("Checkout Code") {
+               steps {
+                   git branch: 'master',
+                       url: "${repoUrl}"
+               }
+           }
 stage('Compile Stage'){
 steps{
 withMaven(maven: 'Maven3'){
