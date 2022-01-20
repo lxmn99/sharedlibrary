@@ -8,7 +8,7 @@ def call(String repoUrl) {
        stages {
          stage("Tools initialization") {
                steps {
-                 withMaven(maven: 'Maven3'){
+                 withMaven(maven: 'MAVEN_HOME'){
                    bat 'mvn --version'
                    bat 'java -version'
                }
@@ -22,7 +22,7 @@ def call(String repoUrl) {
            stage("Cleaning workspace") {
                steps {
                  script{
-                      withMaven(maven: 'Maven3'){
+                      withMaven(maven: 'MAVEN_HOME'){
                       bat 'mvn clean compile'
                         }
                   }
