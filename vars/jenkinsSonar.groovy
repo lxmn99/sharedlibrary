@@ -8,15 +8,23 @@ stages{
                        url: "${repoUrl}"
                }
            }
- stage('package Stage'){
+ stage('Compile Stage'){
 steps{
 withMaven(maven: 'Maven3'){
-bat 'mvn package'
+bat 'mvn clean compile'
+}
+}
+}
+ 
+ stage('Testing Stage'){
+steps{
+withMaven(maven: 'Maven3'){
+bat 'mvn test'
 }
 }
 }
 
-  stage('Sonar stage'){
+  stage('Code analysis stage'){
     steps{
     withSonarQubeEnv('SonarQube'){
      bat 'mvn clean package sonar:sonar' 
