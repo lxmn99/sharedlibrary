@@ -8,6 +8,14 @@ stages{
                        url: "${repoUrl}"
                }
            }
+ stage('package Stage'){
+steps{
+withMaven(maven: 'Maven3'){
+bat 'mvn package'
+}
+}
+}
+
   stage('Sonar stage'){
     steps{
     withSonarQubeEnv('SonarQube'){
