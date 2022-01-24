@@ -32,6 +32,13 @@ bat 'mvn test'
     }
     
   }
+ stage("Quality Gate") {
+            steps {
+              timeout(time: 1, unit: 'HOURS') {
+                waitForQualityGate abortPipeline: true
+              }
+            }
+ }
 stage('Build artifact Stage'){
 steps{
 withMaven(maven: 'Maven3'){
